@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="InterPlayers.API/InterPlayers.API.csproj" />
+  <Project Path="InterPlayers.Domain.Test/InterPlayers.Domain.Test.csproj" />
+  <Project Path="InterPlayers.Domain/InterPlayers.Domain.csproj" />
+</Solution>
