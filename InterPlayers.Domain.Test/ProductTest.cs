@@ -1,3 +1,5 @@
+using InterPlayers.Domain.Exceptions;
+
 namespace InterPlayers.Domain.Test;
 
 public class ProductTest
@@ -18,6 +20,7 @@ public class ProductTest
 
     [Theory]
     [InlineData("")]
+    [InlineData("   ")]
     [InlineData(null)]
     public void ShouldThrowsIfProductNameInvalid(string productName)
     {
@@ -31,7 +34,7 @@ public class ProductTest
         }
 
         // Assert
-        Assert.Throws<ArgumentException>(actionAssert);
+        Assert.Throws<DomainValidationException>(actionAssert);
     }
 
     [Theory]
@@ -50,7 +53,7 @@ public class ProductTest
         }
 
         // Assert
-        Assert.Throws<ArgumentException>(actionAssert);
+        Assert.Throws<DomainValidationException>(actionAssert);
     }
 
     [Fact]
@@ -62,8 +65,7 @@ public class ProductTest
         var newProductPrice = 15;
 
         // Action
-        currentProduct.SetName(newProductName);
-        currentProduct.SetPrice(newProductPrice);
+        currentProduct.Update(newProductName, newProductPrice);
 
         // Assert
         Assert.Equal(currentProduct.Name, newProductName);

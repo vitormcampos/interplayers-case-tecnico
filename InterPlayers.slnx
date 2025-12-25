@@ -1,5 +1,14 @@
 <Solution>
+  <Folder Name="/docs/">
+    <File Path="database.md" />
+    <File Path="README.md" />
+  </Folder>
   <Project Path="InterPlayers.API/InterPlayers.API.csproj" />
+  <Project Path="InterPlayers.Application.Test/InterPlayers.Application.Test.csproj" />
+  <Project Path="InterPlayers.Application/InterPlayers.Application.csproj" />
+  <Project Path="InterPlayers.Contracts/InterPlayers.Contracts.csproj" Id="93b759d2-3367-4ae5-bafa-bdab02bde167" />
   <Project Path="InterPlayers.Domain.Test/InterPlayers.Domain.Test.csproj" />
   <Project Path="InterPlayers.Domain/InterPlayers.Domain.csproj" />
+  <Project Path="InterPlayers.Infrastructure.Ioc/InterPlayers.Infrastructure.Ioc.csproj" Id="00f1ecb9-a96e-4676-8d23-0acebc9f164e" />
+  <Project Path="InterPlayers.Infrastructure/InterPlayers.Infrastructure.csproj" Id="5da908d6-f33f-4c05-9e66-8d5010fa027d" />
 </Solution>
