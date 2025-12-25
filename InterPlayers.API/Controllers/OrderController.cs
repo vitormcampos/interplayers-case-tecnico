@@ -25,9 +25,13 @@ public class OrderController : ControllerBase
         Description = "Lista de pedidos",
         Type = typeof(IList<Order>)
     )]
-    public async Task<ActionResult<IEnumerable<Order>>> Get()
+    public async Task<ActionResult<IEnumerable<Order>>> Get(
+        [FromQuery] int orderId,
+        [FromQuery] int productId,
+        [FromQuery] string? productName
+    )
     {
-        return Ok(await orderService.GetAllAsync());
+        return Ok(await orderService.GetAllAsync(orderId, productId, productName));
     }
 
     /// <summary>
@@ -61,9 +65,9 @@ public class OrderController : ControllerBase
         Description = "Pedido criado",
         Type = typeof(Order)
     )]
-    public async Task<ActionResult<Order>> Post([FromBody] CreateOrderDto order)
+    public async Task<ActionResult<Order>> Post()
     {
-        var newOrder = await orderService.AddAsync(order);
+        var newOrder = await orderService.AddAsync(new());
 
         return CreatedAtAction(nameof(GetById), new { Id = newOrder.Id }, newOrder);
     }

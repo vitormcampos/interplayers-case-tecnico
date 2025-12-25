@@ -24,10 +24,12 @@ public class Order
     }
 
     /// <summary>
-    /// Adiciona Itens ao pedido, checando se há duplicatas e mesclando
+    /// Adds the specified item to the order. If an item with the same product identifier already exists, increases its
+    /// quantity and updates its unit price.
     /// </summary>
-    /// <param name="item"></param>
-    /// <exception cref="DomainValidationException"></exception>
+    /// <param name="item">The order item to add. Cannot be null. If the item's ProductId matches an existing item, the quantities are
+    /// combined and the unit price is updated.</param>
+    /// <exception cref="DomainValidationException">Thrown if the item parameter is null.</exception>
     public void AddItem(OrderItem item)
     {
         if (item is null)
@@ -55,10 +57,10 @@ public class Order
     }
 
     /// <summary>
-    /// Remove um item do pedido e recalcula o valor total
+    /// Removes the item with the specified identifier from the collection.
     /// </summary>
-    /// <param name="itemId"></param>
-    /// <exception cref="DomainValidationException"></exception>
+    /// <param name="itemId">The unique identifier of the item to remove.</param>
+    /// <exception cref="DomainValidationException">Thrown if no item with the specified identifier exists in the collection.</exception>
     public void RemoveItem(int itemId)
     {
         var item = _items.FirstOrDefault(x => x.Id == itemId);
@@ -70,27 +72,28 @@ public class Order
     }
 
     /// <summary>
-    /// Atualiza um item do pedido e recalcula o valor total
+    /// Updates the details of an existing item in the collection with the specified values.
     /// </summary>
-    /// <param name="itemId"></param>
-    /// <param name="quantity"></param>
-    /// <param name="unitPrice"></param>
-    /// <exception cref="DomainValidationException"></exception>
-    public void UpdateItem(int itemId, int quantity, decimal unitPrice)
+    /// <param name="itemId">The unique identifier of the item to update.</param>
+    /// <param name="productId">The identifier of the new product to associate with the item.</param>
+    /// <param name="quantity">The new quantity to set for the item. Must be a non-negative value.</param>
+    /// <param name="unitPrice">The new unit price to set for the item. Must be a non-negative value.</param>
+    /// <exception cref="DomainValidationException">Thrown if an item with the specified itemId does not exist.</exception>
+    public void UpdateItem(int itemId, int productId, int quantity, decimal unitPrice)
     {
         var item = _items.FirstOrDefault(x => x.Id == itemId);
 
         if (item == null)
             throw new DomainValidationException("Item not found.");
 
-        item.Update(item.ProductId, quantity, unitPrice);
+        item.Update(productId, quantity, unitPrice);
         RecalculateTotal();
     }
 
     /// <summary>
-    /// Calcula o valor total do pedido, usado para controle interno, o total do pedido é recalculado no banco de dados vai trigger
+    /// Recalculates the total amount for the order based on the current items.
     /// </summary>
-    /// <exception cref="DomainValidationException"></exception>
+    /// <exception cref="DomainValidationException">Thrown if the recalculated total is negative.</exception>
     private void RecalculateTotal()
     {
         Total = _items.Sum(i => i.SubTotal);

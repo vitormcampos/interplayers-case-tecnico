@@ -115,7 +115,7 @@ public class OrderTests
         order.AddItem(item);
 
         // Action
-        order.UpdateItem(itemId, 3, 1);
+        order.UpdateItem(itemId, productId, 3, 1);
 
         // Assert
         var updated = order.Items.First(i => i.ProductId == productId);
@@ -129,13 +129,14 @@ public class OrderTests
         // Arrange
         var order = new Order();
         var itemId = 1;
+        var productId = 1;
         var item = CreateItem(1, 10, 1);
         SetIDHelper.SetId(item, itemId);
 
         // Action
         void assertAction()
         {
-            order.UpdateItem(itemId, 1, 5);
+            order.UpdateItem(itemId, productId, 1, 5);
         }
 
         //Assert
@@ -159,15 +160,17 @@ public class OrderTests
         var order = new Order();
         var item1Id = 1;
         var item2Id = 2;
-        var item1 = CreateItem(1, 10m, 1);
-        var item2 = CreateItem(2, 5m, 2);
+        var productId1 = 1;
+        var productId2 = 2;
+        var item1 = CreateItem(productId1, 10m, 1);
+        var item2 = CreateItem(productId2, 5m, 2);
         SetIDHelper.SetId(item1, item1Id);
         SetIDHelper.SetId(item2, item2Id);
 
         // Action
         order.AddItem(item1);
         order.AddItem(item2);
-        order.UpdateItem(item1Id, 3, 10);
+        order.UpdateItem(item1Id, productId1, 3, 10);
         order.RemoveItem(item2Id);
 
         // Assert

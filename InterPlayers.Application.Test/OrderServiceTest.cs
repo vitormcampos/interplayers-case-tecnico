@@ -47,10 +47,12 @@ public class OrderServiceTest
         // Arrange
         var list = new List<Order> { new Order(), new Order() };
 
-        orderRepositoryMock.Setup(r => r.GetAllAsync()).ReturnsAsync(list);
+        orderRepositoryMock
+            .Setup(r => r.GetAllAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>()))
+            .ReturnsAsync(list);
 
         // Action
-        var result = await orderService.GetAllAsync();
+        var result = await orderService.GetAllAsync(0, 0, null);
 
         // Assert
         Assert.NotNull(result);
@@ -61,10 +63,12 @@ public class OrderServiceTest
     public async Task ShouldReturnEmptyListIfRepositoryReturnsNull()
     {
         // Arrange
-        orderRepositoryMock.Setup(r => r.GetAllAsync()).ReturnsAsync((IEnumerable<Order>?)null);
+        orderRepositoryMock
+            .Setup(r => r.GetAllAsync(It.IsAny<int>(), It.IsAny<int>(), It.IsAny<string>()))
+            .ReturnsAsync((IEnumerable<Order>?)null);
 
         // Action
-        var result = await orderService.GetAllAsync();
+        var result = await orderService.GetAllAsync(0, 0, null);
 
         // Assert
         Assert.Empty(result);
@@ -76,7 +80,7 @@ public class OrderServiceTest
         // Arrange
         var order = new Order();
 
-        orderRepositoryMock.Setup(r => r.GetById(It.IsAny<int>())).ReturnsAsync(order);
+        orderRepositoryMock.Setup(r => r.GetWithItemsById(It.IsAny<int>())).ReturnsAsync(order);
 
         // Action
         var result = await orderService.GetAsync(1);
