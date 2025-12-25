@@ -1,7 +1,8 @@
 ﻿using InterPlayers.Application.Interfaces.Factories;
+using InterPlayers.Application.Interfaces.Repositories;
+using InterPlayers.Application.Interfaces.Services;
 using InterPlayers.Application.Services;
 using InterPlayers.Application.Test.Interfaces.Repositories;
-using InterPlayers.Application.Test.Interfaces.Services;
 using InterPlayers.Infrastructure.Factories;
 using InterPlayers.Infrastructure.Repositories;
 using Microsoft.Extensions.Configuration;
@@ -23,5 +24,7 @@ public static class ConfigureServices
         ));
         app.Services.AddScoped<IProductRepository, ProductRepository>();
         app.Services.AddScoped<IProductService, ProductService>();
+        app.Services.AddScoped<IOrderRepository, OrderRepository>();
+        app.Services.AddScoped<IOrderService, OrderService>();
     }
 }
