@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using InterPlayers.Application.Test.Interfaces.Services;
+﻿using InterPlayers.Application.Interfaces.Services;
 using InterPlayers.Contracts.DTOs.Products;
 using InterPlayers.Domain;
 using Microsoft.AspNetCore.Mvc;

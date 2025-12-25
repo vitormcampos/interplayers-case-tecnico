@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace InterPlayers.Application.Test.Interfaces.Repositories;
+﻿namespace InterPlayers.Application.Interfaces.Repositories;
 
 public interface IRepository<T>
     where T : class

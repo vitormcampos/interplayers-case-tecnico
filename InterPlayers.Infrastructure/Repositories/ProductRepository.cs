@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using InterPlayers.Application.Interfaces.Factories;
-using InterPlayers.Application.Test.Interfaces.Repositories;
+using InterPlayers.Application.Interfaces.Repositories;
 using InterPlayers.Domain;
 
 namespace InterPlayers.Infrastructure.Repositories;

@@ -1,5 +1,5 @@
 ﻿using InterPlayers.Domain;
 
-namespace InterPlayers.Application.Test.Interfaces.Repositories;
+namespace InterPlayers.Application.Interfaces.Repositories;
 
 public interface IProductRepository : IRepository<Product> { }

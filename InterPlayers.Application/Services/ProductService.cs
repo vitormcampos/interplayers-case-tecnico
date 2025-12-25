@@ -1,6 +1,6 @@
 ﻿using InterPlayers.Application.Exceptions;
-using InterPlayers.Application.Test.Interfaces.Repositories;
-using InterPlayers.Application.Test.Interfaces.Services;
+using InterPlayers.Application.Interfaces.Repositories;
+using InterPlayers.Application.Interfaces.Services;
 using InterPlayers.Contracts.DTOs.Products;
 using InterPlayers.Domain;
 

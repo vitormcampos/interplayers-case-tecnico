@@ -1,7 +1,7 @@
 ﻿using InterPlayers.Contracts.DTOs.Products;
 using InterPlayers.Domain;
 
-namespace InterPlayers.Application.Test.Interfaces.Services;
+namespace InterPlayers.Application.Interfaces.Services;
 
 public interface IProductService
 {
