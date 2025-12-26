@@ -1,5 +1,5 @@
 # InterPlayers:
-## Case t�cnico para vaga de desenvolvedor fullstack
+## Case técnico para vaga de desenvolvedor fullstack
 
 O projeto consiste em um sistema simples para gerenciamento de pedidos e seus itens.  
 Atendendo aos requisitos de tecnologias (ASP .NET Core e SQL Server) e 
@@ -20,3 +20,32 @@ estrategias (aquitetura limpa e recursos do baco de dados, como stored procedure
 - Produto
 - Pedido
 - PedidoItem
+
+### Rodando o projeto
+1. Clone o projeto
+```bash
+git clone git@github.com:vitormcampos/interplayers-case-tecnico.git
+```
+2. Edite o appsettings.Development.json para acesso ao banco de dados.  
+Edite a propriedade **"InterPlayersConnectionString"** para os valores do seu banco de dados local.
+
+3. Agora precisamos definir o banco de dados, preparei outro documento com esses passos: [Configuração do banco de dados](database.md)
+
+
+4. Rode o projeto **InterPlayer.API**, via Visual Studio ou CLI:
+```bash
+dotnet run --project ./InterPlayers.API/
+```
+
+5. Agora acesse a URL da aplicação, com a rota do **Swagger**. No meu caso ficou assim:
+```
+http://localhost:5249/swagger/index.html
+```
+
+Com isso você terá acesso aos endpoints e verá as operações de backend:
+- Gerenciar Produtos
+- Gerenciar Pedidos
+- Gerenciar Items de pedidos  
+
+---
+# Obrigado pela oportunidade

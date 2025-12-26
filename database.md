@@ -1,15 +1,15 @@
 
-### Criação do banco de dados
+### CriaÃ§Ã£o do banco de dados
 
 ```sql
-CREATE DATABASE InterPlayersOrders;
+CREATE DATABASE interplayers;
 GO
 
-USE InterPlayersOrders;
+USE interplayers;
 GO
 ```
 
-### Criação da tabela de Produtos e adição de regra para impedir preços invalidos
+### CriaÃ§Ã£o da tabela de Produtos e adiÃ§Ã£o de regra para impedir preï¿½os invalidos
 
 ```sql
 CREATE TABLE Products (
@@ -24,7 +24,7 @@ ADD CONSTRAINT CK_Product_Price_Positive CHECK (Price > 0);
 GO
 ```
 
-### Criação da tabela de Pedidos
+### CriaÃ§Ã£o da tabela de Pedidos
 
 ```sql
 CREATE TABLE [dbo].[Orders] (
@@ -34,7 +34,7 @@ CREATE TABLE [dbo].[Orders] (
 GO
 ```
 
-### Crição da tabela de Itens
+### CriÃ§Ã£o da tabela de Itens
 
 ```sql
 CREATE TABLE [dbo].[OrderItems] (
@@ -51,7 +51,7 @@ CREATE TABLE [dbo].[OrderItems] (
 GO
 ```
 
-### Criação do trigger para atualização do valor total do pedido
+### CriaÃ§Ã£o do trigger para atualizaÃ§Ã£o do valor total do pedido
 
 ```sql
 CREATE TRIGGER TR_OrderItems_UpdateTotal
@@ -61,8 +61,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- Considera pedidos afetados
-    ;WITH AffectedOrders AS (
+    WITH AffectedOrders AS (
         SELECT OrderId FROM inserted
         UNION
         SELECT OrderId FROM deleted
@@ -79,7 +78,7 @@ END;
 GO
 ```
 
-### Criação de store procedure, permitindo consulta de pedidos com filtros
+### CriaÃ§Ã£o de store procedure, permitindo consulta de pedidos com filtros
 ```sql
 CREATE PROCEDURE sp_GetOrders
     @OrderId INT = NULL,
@@ -103,7 +102,7 @@ BEGIN
         p.Name,
         p.Price
     FROM Orders o
-    INNER JOIN OrderItems oi ON oi.OrderId = o.Id
+    LEFT JOIN OrderItems oi ON oi.OrderId = o.Id
     LEFT JOIN Products p ON p.Id = oi.ProductId
     WHERE 
         (@OrderId IS NULL OR o.Id = @OrderId)
